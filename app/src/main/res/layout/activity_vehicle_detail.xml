@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VehicleDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp">
+
+        <ImageView
+            android:id="@+id/pre"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/ic_pre_foreground"
+            tools:ignore="TouchTargetSizeCheck"
+            android:contentDescription="pre"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/vehicleImg"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="32dp"
+                        android:contentDescription="vehicle img"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/matricula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/vehicleImg"
+                        app:layout_constraintStart_toStartOf="@+id/vehicleImg"
+                        app:layout_constraintTop_toBottomOf="@+id/vehicleImg" />
+
+                    <TextView
+                        android:id="@+id/marca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/marca"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/matricula" />
+
+                    <TextView
+                        android:id="@+id/carnet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/carnet"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/color"
+                        app:layout_constraintTop_toBottomOf="@+id/color" />
+
+                    <TextView
+                        android:id="@+id/carnetText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/carnet"
+                        app:layout_constraintStart_toEndOf="@+id/carnet"
+                        app:layout_constraintTop_toTopOf="@+id/carnet" />
+
+                    <TextView
+                        android:id="@+id/bateria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/bateria"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/carnet"
+                        app:layout_constraintTop_toBottomOf="@+id/carnet" />
+
+                    <TextView
+                        android:id="@+id/bateriaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/bateria"
+                        app:layout_constraintStart_toEndOf="@+id/bateria"
+                        app:layout_constraintTop_toTopOf="@+id/bateria" />
+
+                    <TextView
+                        android:id="@+id/color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/color"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/marca"
+                        app:layout_constraintTop_toBottomOf="@+id/marca" />
+
+                    <TextView
+                        android:id="@+id/colorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/color"
+                        app:layout_constraintStart_toEndOf="@+id/color"
+                        app:layout_constraintTop_toTopOf="@+id/color" />
+
+                    <TextView
+                        android:id="@+id/fecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/fecha_adq"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/estado"
+                        app:layout_constraintTop_toBottomOf="@+id/estado" />
+
+                    <TextView
+                        android:id="@+id/fechaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/fecha"
+                        app:layout_constraintStart_toEndOf="@+id/fecha"
+                        app:layout_constraintTop_toTopOf="@+id/fecha" />
+
+                    <TextView
+                        android:id="@+id/estado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/estado"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/bateria"
+                        app:layout_constraintTop_toBottomOf="@+id/bateria" />
+
+                    <TextView
+                        android:id="@+id/estadoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/estado"
+                        app:layout_constraintStart_toEndOf="@+id/estado"
+                        app:layout_constraintTop_toTopOf="@+id/estado" />
+
+                    <TextView
+                        android:id="@+id/marcaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/marca"
+                        app:layout_constraintStart_toEndOf="@+id/marca"
+                        app:layout_constraintTop_toTopOf="@+id/marca" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/puertasText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/puertas"
+                        app:layout_constraintStart_toEndOf="@+id/puertas"
+                        app:layout_constraintTop_toTopOf="@+id/puertas" />
+
+                    <TextView
+                        android:id="@+id/puertas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/puertas"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/plazas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/plazas"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/puertas"
+                        app:layout_constraintTop_toBottomOf="@+id/puertas" />
+
+                    <TextView
+                        android:id="@+id/plazasText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/plazas"
+                        app:layout_constraintStart_toEndOf="@+id/plazas"
+                        app:layout_constraintTop_toTopOf="@+id/plazas" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/velmaxText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/velmax"
+                        app:layout_constraintStart_toEndOf="@+id/velmax"
+                        app:layout_constraintTop_toTopOf="@+id/velmax" />
+
+                    <TextView
+                        android:id="@+id/velmax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/vel_max"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cilindrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/cilindrada"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/velmax"
+                        app:layout_constraintTop_toBottomOf="@+id/velmax" />
+
+                    <TextView
+                        android:id="@+id/cilindradaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/cilindrada"
+                        app:layout_constraintStart_toEndOf="@+id/cilindrada"
+                        app:layout_constraintTop_toTopOf="@+id/cilindrada" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tipoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tipo"
+                        app:layout_constraintStart_toEndOf="@+id/tipo"
+                        app:layout_constraintTop_toTopOf="@+id/tipo" />
+
+                    <TextView
+                        android:id="@+id/tipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/tipo"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/numruedasText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/numruedas"
+                        app:layout_constraintStart_toEndOf="@+id/numruedas"
+                        app:layout_constraintTop_toTopOf="@+id/numruedas" />
+
+                    <TextView
+                        android:id="@+id/numruedas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/ruedas"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tamanyo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/tamanyo"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/numruedas"
+                        app:layout_constraintTop_toBottomOf="@+id/numruedas" />
+
+                    <TextView
+                        android:id="@+id/tamanyoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="TextView"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tamanyo"
+                        app:layout_constraintStart_toEndOf="@+id/tamanyo"
+                        app:layout_constraintTop_toTopOf="@+id/tamanyo" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/precio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="TextView"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="20sp"
+                    app:cornerRadius="15dp"
+                    android:text="ACTUALIZAR" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/post"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="post"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/ic_post_foreground"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Una categoria">
+        <EditTextPreference
+            android:defaultValue="389"
+            android:inputType="number"
+            android:key="editTextPreferenceKey"
+            android:summary="Ejemplo EditTextPreference"
+            android:title="EditTextPreference" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="checkBoxPreferenceKey"
+            android:summary="Ejemplo de CheckBoxPreference"
+            android:title="CheckBoxPreference" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:title="Switch preference" />
+        <ListPreference
+            android:defaultValue="standard"
+            android:entries="@array/unidades_entries"
+            android:entryValues="@array/unidades_values"
+            android:key="unidades"
+            android:summary="Unidades en"
+            android:title="Unidades" />
+        <PreferenceCategory android:title="Otra categoria">
+            <androidx.preference.ListPreference
+                android:dialogTitle="@string/settings_theme_dialog_title"
+                android:entries="@array/settings_theme_entries"
+                android:entryValues="@array/settings_theme_values"
+                android:key="@string/settings_theme_key"
+                android:title="@string/settings_theme_title" />
+        </PreferenceCategory>
+
+    </PreferenceCategory>
+</androidx.preference.PreferenceScreen>
