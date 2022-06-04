@@ -19,25 +19,21 @@ public class PreferenceManager {
         return preferenceManager;
     }
 
+    public String getIP(Context context){
+        inicializa(context);
+        return pref.getString("ipKey", "10.19.11.3");
+    }
+
+    public String getPort(Context context){
+        inicializa(context);
+        return pref.getString("puertoKey", "4567");
+    }
+
     private void inicializa(Context context) {
         if (pref == null)
             pref = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public String getUnidades(Context context){
-        inicializa(context);
-        return pref.getString("unidades","standard");
-    }
-
-    public String getEditTextPreference(Context context){
-        inicializa(context);
-        return pref.getString("editTextPreferenceKey","389");
-    }
-
-    public boolean getCheckBoxPreference(Context context){
-        inicializa(context);
-        return pref.getBoolean("checkBoxPreferenceKey",false);
-    }
     public String getTheme(Context context){
         inicializa(context);
         return pref.getString(context.getString(R.string.settings_theme_key),ThemeSetup.Mode.DEFAULT.name());

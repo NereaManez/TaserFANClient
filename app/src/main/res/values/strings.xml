@@ -16,11 +16,6 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="standard">Standard</string>
-    <string name="metric">Metric</string>
-    <string name="imperial">Imperial</string>
-    <string name="spanish">Español</string>
-    <string name="english">English</string>
     <string name="currently">Actualmente </string>
     <string name="settings">Settings</string>
     <string name="settings_theme_title">Theme for the app</string>

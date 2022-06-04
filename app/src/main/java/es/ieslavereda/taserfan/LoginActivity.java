@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import es.ieslavereda.taserfan.api.API;
 import es.ieslavereda.taserfan.api.Connector;
 import es.ieslavereda.taserfan.api.Result;
 import es.ieslavereda.taserfan.entity.AuthenticateData;
@@ -18,6 +19,7 @@ import es.ieslavereda.taserfan.base.BaseActivity;
 import es.ieslavereda.taserfan.base.CallInterface;
 import es.ieslavereda.taserfan.entity.Employee;
 import es.ieslavereda.taserfan.base.LoggedInUserRepository;
+import es.ieslavereda.taserfan.preferences.PreferenceManager;
 import es.ieslavereda.taserfan.preferences.ThemeSetup;
 
 public class LoginActivity extends BaseActivity implements CallInterface {
@@ -36,6 +38,9 @@ public class LoginActivity extends BaseActivity implements CallInterface {
         b = findViewById(R.id.login_button);
         email = findViewById(R.id.TextEmailAddress);
         pswd = findViewById(R.id.TextPassword);
+
+        ThemeSetup.applyPreferenceTheme(this);
+        API.Routes.changeURL(PreferenceManager.getInstance().getIP(this), PreferenceManager.getInstance().getPort(this));
 
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +67,7 @@ public class LoginActivity extends BaseActivity implements CallInterface {
             Toast.makeText(this,"Acceso", Toast.LENGTH_LONG).show();
         } else {
             Result.Error r = (Result.Error) result;
-            Toast.makeText(this, r.getError(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, r.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 

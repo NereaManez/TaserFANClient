@@ -20,28 +20,19 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
 
         setPreferencesFromResource(R.xml.preferences, rootKey);
 
-        // Modificacion de la vista de preferencias por codigo
-        // ListPreference
-        final ListPreference unidades = findPreference("unidades");
-        final List<String> unidades_entries = Arrays.asList(getResources().getStringArray(R.array.unidades_entries));
-        final List<String> unidades_values = Arrays.asList(getResources().getStringArray(R.array.unidades_values));
-
-        int pos  = unidades_values.indexOf(PreferenceManager.getInstance().getUnidades(getContext()));
-
-        unidades.setSummary("Unidades en " + unidades_entries.get(pos));
-        unidades.setOnPreferenceChangeListener((preference, newValue) -> {
-
-            int pos1 = unidades_values.indexOf(newValue);
-            unidades.setSummary("Unidades en " + unidades_entries.get(pos1));
-
+        // EditTextPreference IP
+        final EditTextPreference ip = findPreference("ipKey");
+        ip.setSummary("Actualmente: " + PreferenceManager.getInstance().getIP(getContext()));
+        ip.setOnPreferenceChangeListener((preference, newValue) -> {
+            ip.setSummary("Actualmente: " + newValue);
             return true;
         });
 
-        // EditTextPreference
-        final EditTextPreference editTextPreference = findPreference("editTextPreferenceKey");
-        editTextPreference.setSummary("Actualmente: " + PreferenceManager.getInstance().getEditTextPreference(getContext()));
-        editTextPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            editTextPreference.setSummary("Actualmente: " + newValue);
+        // EditTextPreference PORT
+        final EditTextPreference port = findPreference("editTextPreferenceKey");
+        port.setSummary("Actualmente: " + PreferenceManager.getInstance().getPort(getContext()));
+        port.setOnPreferenceChangeListener((preference, newValue) -> {
+            port.setSummary("Actualmente: " + newValue);
             return true;
         });
 

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TaserFAN"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddVehicleActivity"
+            android:exported="false" />
+        <activity
             android:name=".VehicleDetailActivity"
             android:exported="false" />
         <activity

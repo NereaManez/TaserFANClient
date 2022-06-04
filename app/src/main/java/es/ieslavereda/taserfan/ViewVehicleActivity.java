@@ -8,11 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import es.ieslavereda.taserfan.api.Connector;
 import es.ieslavereda.taserfan.base.BaseActivity;
@@ -28,6 +36,13 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
     private RecyclerView recyclerView;
     private List<Vehicle> vehicles;
     Context context;
+    FloatingActionButton addbtn;
+
+    EditText filtroMatricula;
+    Spinner filtroTipo;
+
+    ArrayAdapter<String> tipoAA;
+    String[] aTipo = {"TODOS", "COCHE", "MOTO", "BICICLETA", "PATINETE"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +50,53 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
         setContentView(R.layout.activity_view_vehicle);
 
         context = this;
+        addbtn = findViewById(R.id.addbtn);
+        addbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewVehicleActivity.this, AddVehicleActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        filtroTipo = findViewById(R.id.filtroTipo);
+        tipoAA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aTipo);
+        filtroTipo.setAdapter(tipoAA);
+
+        filtroMatricula = findViewById(R.id.filtroMatricula);
+        filtroMatricula.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() == 0) {
+                    MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,vehicles);
+                    adaptador.setOnClickListener(ViewVehicleActivity.this);
+                    recyclerView.setAdapter(adaptador);
+                } else {
+                    if (!filtroTipo.getSelectedItem().toString().equals("TODOS")) {
+                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
+                        MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,l);
+                        adaptador.setOnClickListener(ViewVehicleActivity.this);
+                        recyclerView.setAdapter(adaptador);
+                    } else {
+                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString())).collect(Collectors.toList());
+                        MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,l);
+                        adaptador.setOnClickListener(ViewVehicleActivity.this);
+                        recyclerView.setAdapter(adaptador);
+                    }
+                }
+            }
+        });
         executeCall(this);
     }
 
