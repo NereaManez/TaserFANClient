@@ -18,13 +18,7 @@
             android:defaultValue="false"
             android:key="switch_preference_1"
             android:title="Switch preference" />
-        <ListPreference
-            android:defaultValue="standard"
-            android:entries="@array/unidades_entries"
-            android:entryValues="@array/unidades_values"
-            android:key="unidades"
-            android:summary="Unidades en"
-            android:title="Unidades" />
+
         <PreferenceCategory android:title="Otra categoria">
             <androidx.preference.ListPreference
                 android:dialogTitle="@string/settings_theme_dialog_title"

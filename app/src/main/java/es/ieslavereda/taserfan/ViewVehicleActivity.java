@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -34,6 +35,8 @@ import es.ieslavereda.taserfan.entity.Vehicle;
 public class ViewVehicleActivity extends BaseActivity implements CallInterface, View.OnClickListener {
 
     private RecyclerView recyclerView;
+    MyRecyclerViewAdapter adapter;
+    ItemTouchHelper ith;
     private List<Vehicle> vehicles;
     Context context;
     FloatingActionButton addbtn;
@@ -49,6 +52,10 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_vehicle);
 
+        recyclerView = findViewById(R.id.recyclerView);
+        filtroTipo = findViewById(R.id.filtroTipo);
+        filtroMatricula = findViewById(R.id.filtroMatricula);
+
         context = this;
         addbtn = findViewById(R.id.addbtn);
         addbtn.setOnClickListener(new View.OnClickListener() {
@@ -60,43 +67,6 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
             }
         });
 
-        filtroTipo = findViewById(R.id.filtroTipo);
-        tipoAA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aTipo);
-        filtroTipo.setAdapter(tipoAA);
-
-        filtroMatricula = findViewById(R.id.filtroMatricula);
-        filtroMatricula.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (editable.length() == 0) {
-                    MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,vehicles);
-                    adaptador.setOnClickListener(ViewVehicleActivity.this);
-                    recyclerView.setAdapter(adaptador);
-                } else {
-                    if (!filtroTipo.getSelectedItem().toString().equals("TODOS")) {
-                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
-                        MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,l);
-                        adaptador.setOnClickListener(ViewVehicleActivity.this);
-                        recyclerView.setAdapter(adaptador);
-                    } else {
-                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString())).collect(Collectors.toList());
-                        MyRecyclerViewAdapter adaptador = new MyRecyclerViewAdapter(context,l);
-                        adaptador.setOnClickListener(ViewVehicleActivity.this);
-                        recyclerView.setAdapter(adaptador);
-                    }
-                }
-            }
-        });
         executeCall(this);
     }
 
@@ -118,15 +88,16 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
 
     @Override
     public void doInUI() {
-        recyclerView = findViewById(R.id.recyclerView);
-        MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(this, vehicles);
+
+        adapter = new MyRecyclerViewAdapter(this, vehicles);
         adapter.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
 
         LinearLayoutManager layout = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layout);
 
-        ItemTouchHelper ith = new ItemTouchHelper(
+
+        ith = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT) {
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -170,5 +141,77 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
                 });
 
         ith.attachToRecyclerView(recyclerView);
+
+
+        tipoAA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aTipo);
+        filtroTipo.setAdapter(tipoAA);
+        filtroTipo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!filtroTipo.getSelectedItem().toString().equals("TODOS")) {
+                    List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
+                    adapter = new MyRecyclerViewAdapter(context,l);
+                    adapter.setOnClickListener(ViewVehicleActivity.this);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString())).collect(Collectors.toList());
+                    adapter = new MyRecyclerViewAdapter(context,l);
+                    adapter.setOnClickListener(ViewVehicleActivity.this);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+        });
+
+        filtroMatricula.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() == 0) {
+                    adapter = new MyRecyclerViewAdapter(context,vehicles);
+                    adapter.setOnClickListener(ViewVehicleActivity.this);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    if (!filtroTipo.getSelectedItem().toString().equals("TODOS")) {
+                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
+                        adapter = new MyRecyclerViewAdapter(context,l);
+                        adapter.setOnClickListener(ViewVehicleActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    } else {
+                        List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(editable.toString())).collect(Collectors.toList());
+                        adapter = new MyRecyclerViewAdapter(context,l);
+                        adapter.setOnClickListener(ViewVehicleActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("list", (Serializable) vehicles);
+        outState.putString("filtroMatricula", filtroMatricula.getText().toString());
+        outState.putInt("posFiltroTipo", filtroTipo.getSelectedItemPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        vehicles = (List<Vehicle>) savedInstanceState.getSerializable("list");
+        filtroMatricula.setText(savedInstanceState.getString("filtroMatricula"));
+        filtroTipo.setSelection(savedInstanceState.getInt("posFiltroTipo"));
+
+        if (vehicles != null)
+            doInUI();
     }
 }

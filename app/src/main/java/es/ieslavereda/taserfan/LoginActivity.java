@@ -58,6 +58,7 @@ public class LoginActivity extends BaseActivity implements CallInterface {
     public void doInBackground() {
         AuthenticateData a = new AuthenticateData(email.getText().toString(), pswd.getText().toString());
         result = Connector.getConector().post(Employee.class, a, "/employee");
+        //result = new Result.Success<Employee>(new Employee("1234","manolo","Garcia","")); ya funciona el loggin
     }
 
     @Override
@@ -65,6 +66,8 @@ public class LoginActivity extends BaseActivity implements CallInterface {
         if (result instanceof Result.Success) {
             LoggedInUserRepository.getInstance().login((((Result.Success<Employee>) result).getData()));
             Toast.makeText(this,"Acceso", Toast.LENGTH_LONG).show();
+            Intent i = new Intent(LoginActivity.this, ViewVehicleActivity.class);
+            startActivity(i);
         } else {
             Result.Error r = (Result.Error) result;
             Toast.makeText(this, r.getMessage(), Toast.LENGTH_LONG).show();

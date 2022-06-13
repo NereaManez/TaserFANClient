@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior;
 
+import java.io.Serializable;
 import java.util.List;
 
 import es.ieslavereda.taserfan.entity.Vehicle;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> implements Serializable {
     private LayoutInflater inflater;
     private View.OnClickListener onClickListener;
     private Context context;

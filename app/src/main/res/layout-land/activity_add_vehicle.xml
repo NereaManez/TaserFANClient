@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddVehicleActivity">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -86,28 +85,29 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/carnet"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/color"
-                    app:layout_constraintTop_toBottomOf="@+id/color" />
+                    app:layout_constraintStart_toStartOf="@+id/marca"
+                    app:layout_constraintTop_toBottomOf="@+id/marca" />
 
                 <TextView
                     android:id="@+id/bateria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:text="@string/bateria"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/carnet"
-                    app:layout_constraintTop_toBottomOf="@+id/carnet" />
+                    app:layout_constraintBottom_toBottomOf="@+id/carnet"
+                    app:layout_constraintStart_toStartOf="@+id/color"
+                    app:layout_constraintTop_toTopOf="@+id/carnet" />
 
                 <TextView
                     android:id="@+id/color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="104dp"
                     android:text="@string/color"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/marca"
-                    app:layout_constraintTop_toBottomOf="@+id/marca" />
+                    app:layout_constraintBottom_toBottomOf="@+id/marca"
+                    app:layout_constraintStart_toEndOf="@+id/marcaAdd"
+                    app:layout_constraintTop_toTopOf="@+id/marca" />
 
                 <TextView
                     android:id="@+id/estado"
@@ -116,8 +116,8 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/estado"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/bateria"
-                    app:layout_constraintTop_toBottomOf="@+id/bateria" />
+                    app:layout_constraintStart_toStartOf="@+id/carnet"
+                    app:layout_constraintTop_toBottomOf="@+id/carnet" />
 
                 <EditText
                     android:id="@+id/marcaAdd"
@@ -194,11 +194,12 @@
                     android:id="@+id/plazas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="104dp"
                     android:text="@string/plazas"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/puertas"
-                    app:layout_constraintTop_toBottomOf="@+id/puertas" />
+                    app:layout_constraintBottom_toBottomOf="@+id/puertas"
+                    app:layout_constraintStart_toEndOf="@+id/puertasAdd"
+                    app:layout_constraintTop_toTopOf="@+id/puertas" />
 
                 <EditText
                     android:id="@+id/puertasAdd"
@@ -247,11 +248,12 @@
                     android:id="@+id/cilindrada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="104dp"
                     android:text="@string/cilindrada"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/velmax"
-                    app:layout_constraintTop_toBottomOf="@+id/velmax" />
+                    app:layout_constraintBottom_toBottomOf="@+id/velmax"
+                    app:layout_constraintStart_toEndOf="@+id/velmaxAdd"
+                    app:layout_constraintTop_toTopOf="@+id/velmax" />
 
                 <EditText
                     android:id="@+id/velmaxAdd"
@@ -331,11 +333,12 @@
                     android:id="@+id/tamanyo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="104dp"
                     android:text="@string/tamanyo"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/numruedas"
-                    app:layout_constraintTop_toBottomOf="@+id/numruedas" />
+                    app:layout_constraintBottom_toBottomOf="@+id/numruedas"
+                    app:layout_constraintStart_toEndOf="@+id/numruedasAdd"
+                    app:layout_constraintTop_toTopOf="@+id/numruedas" />
 
                 <EditText
                     android:id="@+id/numruedasAdd"
@@ -395,4 +398,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

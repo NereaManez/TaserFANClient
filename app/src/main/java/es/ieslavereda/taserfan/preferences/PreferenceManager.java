@@ -21,7 +21,7 @@ public class PreferenceManager {
 
     public String getIP(Context context){
         inicializa(context);
-        return pref.getString("ipKey", "10.19.11.3");
+        return pref.getString("ipKey", "10.13.0.129");
     }
 
     public String getPort(Context context){
