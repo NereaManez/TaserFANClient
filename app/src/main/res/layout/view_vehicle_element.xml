@@ -26,6 +26,7 @@
         android:layout_marginStart="24dp"
         android:text="@string/registration"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/vehicle_image"
         app:layout_constraintTop_toTopOf="@+id/vehicle_image" />
 

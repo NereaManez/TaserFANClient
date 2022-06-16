@@ -74,6 +74,7 @@
                         android:layout_marginTop="32dp"
                         android:text="@string/marca"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/matricula" />
 
@@ -84,6 +85,7 @@
                         android:layout_marginTop="32dp"
                         android:text="@string/carnet"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="@+id/marca"
                         app:layout_constraintTop_toBottomOf="@+id/marca" />
 
@@ -104,6 +106,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/bateria"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/carnet"
                         app:layout_constraintStart_toStartOf="@+id/color"
                         app:layout_constraintTop_toTopOf="@+id/carnet" />
@@ -126,6 +129,7 @@
                         android:layout_marginStart="112dp"
                         android:text="@string/color"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/marca"
                         app:layout_constraintStart_toEndOf="@+id/marcaText"
                         app:layout_constraintTop_toTopOf="@+id/marca" />
@@ -147,6 +151,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/fecha_adq"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/estado"
                         app:layout_constraintStart_toStartOf="@+id/bateria"
                         app:layout_constraintTop_toTopOf="@+id/estado" />
@@ -169,6 +174,7 @@
                         android:layout_marginTop="32dp"
                         android:text="@string/estado"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="@+id/carnet"
                         app:layout_constraintTop_toBottomOf="@+id/carnet" />
 
@@ -261,6 +267,7 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/puertas"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -271,6 +278,7 @@
                         android:layout_marginStart="112dp"
                         android:text="@string/plazas"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/puertas"
                         app:layout_constraintStart_toEndOf="@+id/puertasText"
                         app:layout_constraintTop_toTopOf="@+id/puertas" />
@@ -339,6 +347,7 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/vel_max"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -349,6 +358,7 @@
                         android:layout_marginStart="112dp"
                         android:text="@string/cilindrada"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/velmax"
                         app:layout_constraintStart_toEndOf="@+id/velmaxText"
                         app:layout_constraintTop_toTopOf="@+id/velmax" />
@@ -417,6 +427,7 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/tipo"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -460,6 +471,7 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/ruedas"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -470,6 +482,7 @@
                         android:layout_marginStart="112dp"
                         android:text="@string/tamanyo"
                         android:textSize="16sp"
+                        android:textStyle="bold|italic"
                         app:layout_constraintBottom_toBottomOf="@+id/numruedas"
                         app:layout_constraintStart_toEndOf="@+id/numruedasText"
                         app:layout_constraintTop_toTopOf="@+id/numruedas" />
@@ -524,7 +537,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="TextView"
+                        android:textColor="#354AC3"
                         android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
