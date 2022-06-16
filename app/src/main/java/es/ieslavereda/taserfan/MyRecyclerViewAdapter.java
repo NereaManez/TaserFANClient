@@ -43,20 +43,20 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         switch (v.getType().getType()) {
             case "COCHE":
-                holder.vehicleImg.setImageResource(R.mipmap.ic_coche);
+                holder.vehicleImg.setImageResource(R.mipmap.ic_coche_foreground);
                 break;
             case "MOTO":
-                holder.vehicleImg.setImageResource(R.mipmap.ic_moto);
+                holder.vehicleImg.setImageResource(R.mipmap.ic_moto_foreground);
                 break;
             case "BICICLETA":
-                holder.vehicleImg.setImageResource(R.mipmap.ic_bicicleta);
+                holder.vehicleImg.setImageResource(R.mipmap.ic_bicicleta_foreground);
                 break;
             case "PATINETE":
-                holder.vehicleImg.setImageResource(R.mipmap.ic_patinete);
+                holder.vehicleImg.setImageResource(R.mipmap.ic_patinete_foreground);
         }
 
         holder.state.setText(v.getEstado().getstate());
-        switch (v.getEstado().toString()) {
+        switch (v.getEstado().getstate()) {
             case "preparado":
                 holder.state.setBackgroundResource(R.color.green);
                 break;

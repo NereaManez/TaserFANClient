@@ -38,6 +38,7 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
     MyRecyclerViewAdapter adapter;
     ItemTouchHelper ith;
     private List<Vehicle> vehicles;
+    private List<Vehicle> vehiclesFilter;
     Context context;
     FloatingActionButton addbtn;
 
@@ -66,7 +67,11 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         executeCall(this);
     }
 
@@ -76,7 +81,7 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
 
         int index = recyclerView.getChildAdapterPosition(v);
         intent.putExtra("index", index);
-        intent.putExtra("list", (Serializable) vehicles);
+        intent.putExtra("list", (Serializable) vehiclesFilter);
 
         startActivity(intent);
     }
@@ -84,12 +89,13 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
     @Override
     public void doInBackground() {
         vehicles = new ArrayList<>(Connector.getConector().getAsList(Vehicle.class, "/vehicles"));
+        vehiclesFilter = vehicles;
     }
 
     @Override
     public void doInUI() {
 
-        adapter = new MyRecyclerViewAdapter(this, vehicles);
+        adapter = new MyRecyclerViewAdapter(this, vehiclesFilter);
         adapter.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -108,33 +114,33 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
 
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                        Vehicle vehicle = vehicles.get(viewHolder.getAdapterPosition());
                         int position = viewHolder.getAdapterPosition();
+                        Vehicle vehicle = vehicles.get(position);
 
                         executeCall(new CallInterface() {
                             @Override
                             public void doInBackground() {
                                 switch (vehicle.getType()){
                                     case COCHE:
-                                        Connector.getConector().delete(Car.class, "/coche?matricula="+ vehicle.getMatricula());
+                                        Connector.getConector().delete(Car.class, "/car?matricula="+ vehicle.getMatricula());
                                         break;
                                     case MOTO:
                                         Connector.getConector().delete(Motorbike.class, "/moto?matricula="+ vehicle.getMatricula());
                                         break;
                                     case BICICLETA:
-                                        Connector.getConector().delete(Bike.class, "/bicicleta?matricula="+ vehicle.getMatricula());
+                                        Connector.getConector().delete(Bike.class, "/bike?matricula="+ vehicle.getMatricula());
                                         break;
                                     case PATINETE:
-                                        Connector.getConector().delete(Scooter.class, "/patinete?matricula="+ vehicle.getMatricula());
+                                        Connector.getConector().delete(Scooter.class, "/scooter?matricula="+ vehicle.getMatricula());
                                         break;
                                 }
                             }
 
                             @Override
                             public void doInUI() {
-                                vehicles.remove(position);
+                                vehicles.remove(vehicle);
+                                vehiclesFilter.remove(vehicle);
                                 adapter.notifyItemRemoved(position);
-                                adapter.notifyDataSetChanged();
                             }
                         });
                     }
@@ -145,20 +151,25 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
 
         tipoAA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, aTipo);
         filtroTipo.setAdapter(tipoAA);
-        filtroTipo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        filtroTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (!filtroTipo.getSelectedItem().toString().equals("TODOS")) {
-                    List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
-                    adapter = new MyRecyclerViewAdapter(context,l);
+                    vehiclesFilter = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString()) && v.getType().getType().equals(filtroTipo.getSelectedItem().toString())).collect(Collectors.toList());
+                    adapter = new MyRecyclerViewAdapter(context,vehiclesFilter);
                     adapter.setOnClickListener(ViewVehicleActivity.this);
                     recyclerView.setAdapter(adapter);
                 } else {
-                    List<Vehicle> l = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString())).collect(Collectors.toList());
-                    adapter = new MyRecyclerViewAdapter(context,l);
+                    vehiclesFilter = vehicles.stream().filter((v) -> v.getMatricula().contains(filtroMatricula.getText().toString())).collect(Collectors.toList());
+                    adapter = new MyRecyclerViewAdapter(context,vehiclesFilter);
                     adapter.setOnClickListener(ViewVehicleActivity.this);
                     recyclerView.setAdapter(adapter);
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -199,7 +210,7 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("list", (Serializable) vehicles);
+        outState.putSerializable("list", (Serializable) vehiclesFilter);
         outState.putString("filtroMatricula", filtroMatricula.getText().toString());
         outState.putInt("posFiltroTipo", filtroTipo.getSelectedItemPosition());
     }
@@ -207,11 +218,11 @@ public class ViewVehicleActivity extends BaseActivity implements CallInterface, 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        vehicles = (List<Vehicle>) savedInstanceState.getSerializable("list");
+        vehiclesFilter = (List<Vehicle>) savedInstanceState.getSerializable("list");
         filtroMatricula.setText(savedInstanceState.getString("filtroMatricula"));
         filtroTipo.setSelection(savedInstanceState.getInt("posFiltroTipo"));
 
-        if (vehicles != null)
+        if (vehiclesFilter != null)
             doInUI();
     }
 }

@@ -100,6 +100,19 @@
                         app:layout_constraintStart_toEndOf="@+id/carnet"
                         app:layout_constraintTop_toTopOf="@+id/carnet" />
 
+                    <Spinner
+                        android:id="@+id/carnetSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:contentDescription="carnet spinner"
+                        android:scrollbarSize="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/carnet"
+                        app:layout_constraintStart_toEndOf="@+id/carnet"
+                        app:layout_constraintTop_toTopOf="@+id/carnet"
+                        tools:ignore="TouchTargetSizeCheck" />
+
                     <TextView
                         android:id="@+id/bateria"
                         android:layout_width="wrap_content"
@@ -142,6 +155,19 @@
                         app:layout_constraintStart_toEndOf="@+id/color"
                         app:layout_constraintTop_toTopOf="@+id/color" />
 
+                    <Spinner
+                        android:id="@+id/colorSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:contentDescription="color spinner"
+                        android:scrollbarSize="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/color"
+                        app:layout_constraintStart_toEndOf="@+id/color"
+                        app:layout_constraintTop_toTopOf="@+id/color"
+                        tools:ignore="TouchTargetSizeCheck" />
+
                     <TextView
                         android:id="@+id/fecha"
                         android:layout_width="wrap_content"
@@ -183,6 +209,19 @@
                         app:layout_constraintBottom_toBottomOf="@+id/estado"
                         app:layout_constraintStart_toEndOf="@+id/estado"
                         app:layout_constraintTop_toTopOf="@+id/estado" />
+
+                    <Spinner
+                        android:id="@+id/estadoSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:contentDescription="estado spinner"
+                        android:scrollbarSize="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/estado"
+                        app:layout_constraintStart_toEndOf="@+id/estado"
+                        app:layout_constraintTop_toTopOf="@+id/estado"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/marcaText"

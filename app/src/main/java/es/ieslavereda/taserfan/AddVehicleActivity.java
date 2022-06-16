@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.sql.Date;
@@ -253,5 +254,47 @@ public class AddVehicleActivity extends BaseActivity implements AdapterView.OnIt
 
         Intent intent = new Intent(AddVehicleActivity.this, ViewVehicleActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("matricula", matriculaEdit.getText().toString());
+        outState.putString("marca", marcaEdit.getText().toString());
+        outState.putString("bateria", bateriaEdit.getText().toString());
+        outState.putString("puertas", numPuertasEdit.getText().toString());
+        outState.putString("plazas", numPlazasEdit.getText().toString());
+        outState.putString("velmax", velmaxEdit.getText().toString());
+        outState.putString("cilindrada", cilindradaEdit.getText().toString());
+        outState.putString("tipo", tipoEdit.getText().toString());
+        outState.putString("ruedas", numRuedasEdit.getText().toString());
+        outState.putString("tamanyo", tamanyoEdit.getText().toString());
+        outState.putString("precio", precioEdit.getText().toString());
+
+        outState.putInt("sTipo", spinnerTipo.getSelectedItemPosition());
+        outState.putInt("sColor", spinnerColor.getSelectedItemPosition());
+        outState.putInt("sCarnet", spinnerCarnet.getSelectedItemPosition());
+        outState.putInt("sEstado", spinnerEstado.getSelectedItemPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        matriculaEdit.setText(savedInstanceState.getString("matricula"));
+        marcaEdit.setText(savedInstanceState.getString("marca"));
+        bateriaEdit.setText(savedInstanceState.getString("bateria"));
+        numPlazasEdit.setText(savedInstanceState.getString("plazas"));
+        numPuertasEdit.setText(savedInstanceState.getString("puertas"));
+        velmaxEdit.setText(savedInstanceState.getString("velmax"));
+        cilindradaEdit.setText(savedInstanceState.getString("cilindrada"));
+        tipoEdit.setText(savedInstanceState.getString("tipo"));
+        numRuedasEdit.setText(savedInstanceState.getString("ruedas"));
+        tamanyoEdit.setText(savedInstanceState.getString("tamanyo"));
+        precioEdit.setText(savedInstanceState.getString("precio"));
+
+        spinnerTipo.setSelection(savedInstanceState.getInt("sTipo"));
+        spinnerColor.setSelection(savedInstanceState.getInt("sColor"));
+        spinnerCarnet.setSelection(savedInstanceState.getInt("sCarnet"));
+        spinnerEstado.setSelection(savedInstanceState.getInt("sEstado"));
     }
 }

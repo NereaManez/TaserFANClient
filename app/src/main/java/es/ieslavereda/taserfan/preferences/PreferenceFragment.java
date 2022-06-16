@@ -29,7 +29,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
         });
 
         // EditTextPreference PORT
-        final EditTextPreference port = findPreference("editTextPreferenceKey");
+        final EditTextPreference port = findPreference("portKey");
         port.setSummary("Actualmente: " + PreferenceManager.getInstance().getPort(getContext()));
         port.setOnPreferenceChangeListener((preference, newValue) -> {
             port.setSummary("Actualmente: " + newValue);
@@ -44,19 +44,6 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
         themePreference.setOnPreferenceChangeListener((preference, newValue) -> {
             ThemeSetup.applyTheme(ThemeSetup.Mode.valueOf((String) newValue));
             return true;
-        });
-
-        SwitchPreference switchPreference = findPreference("switch_preference_1");
-        switchPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                if (switchPreference.isChecked())
-                    NLMode.setMode(0);
-                else
-                    NLMode.setMode(1);
-
-                return true;
-            }
         });
     }
 }

@@ -1,6 +1,7 @@
 package es.ieslavereda.taserfan.api;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -12,7 +13,7 @@ public class Conversor {
 
     public  static Conversor getConversor() {
         if (conversor==null) {
-            gson = new Gson();
+            gson = new GsonBuilder().setDateFormat("dd-MM-yyyy").create();
             conversor=new Conversor();
         }
         return conversor;

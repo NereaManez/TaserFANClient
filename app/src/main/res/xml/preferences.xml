@@ -2,31 +2,24 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Una categoria">
         <EditTextPreference
-            android:defaultValue="389"
+            android:defaultValue="10.13.0.129"
             android:inputType="number"
-            android:key="editTextPreferenceKey"
+            android:key="ipKey"
             android:summary="Ejemplo EditTextPreference"
             android:title="EditTextPreference" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="checkBoxPreferenceKey"
-            android:summary="Ejemplo de CheckBoxPreference"
-            android:title="CheckBoxPreference" />
+        <EditTextPreference
+            android:defaultValue="4567"
+            android:inputType="number"
+            android:key="portKey"
+            android:summary="Ejemplo EditTextPreference"
+            android:title="EditTextPreference" />
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="switch_preference_1"
-            android:title="Switch preference" />
-
-        <PreferenceCategory android:title="Otra categoria">
-            <androidx.preference.ListPreference
-                android:dialogTitle="@string/settings_theme_dialog_title"
-                android:entries="@array/settings_theme_entries"
-                android:entryValues="@array/settings_theme_values"
-                android:key="@string/settings_theme_key"
-                android:title="@string/settings_theme_title" />
-        </PreferenceCategory>
-
+        <ListPreference
+            android:dialogTitle="@string/settings_theme_dialog_title"
+            android:entries="@array/settings_theme_entries"
+            android:entryValues="@array/settings_theme_values"
+            android:key="@string/settings_theme_key"
+            android:title="@string/settings_theme_title"/>
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>
